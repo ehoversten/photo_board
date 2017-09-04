@@ -5,6 +5,6 @@ Rails.application.routes.draw do
 
 
 
-  root "pins#new"
+  root "pins#index"
 
 end
