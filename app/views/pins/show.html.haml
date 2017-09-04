@@ -3,6 +3,8 @@
 
 %h2= @pin.title
 %p= @pin.description
+%p Created by:
+%p= @pin.user.user_name
 
 = link_to 'BACK', root_path, class: 'btn btn-primary'
 = link_to 'EDIT', edit_pin_path, class: 'btn btn-outline-primary'
