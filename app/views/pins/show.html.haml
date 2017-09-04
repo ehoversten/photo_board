@@ -1,0 +1,9 @@
+%h1 Show Me!!! Show Me!!!  Show Me!!!!
+
+
+%h2= @pin.title
+%p= @pin.description
+
+= link_to 'BACK', root_path, class: 'btn btn-primary'
+= link_to 'EDIT', edit_pin_path, class: 'btn btn-outline-primary'
+= link_to "DELETE", pin_path, method: :delete, data: { confirm: "Really?"}
