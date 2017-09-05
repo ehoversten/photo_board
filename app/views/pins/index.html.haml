@@ -1,3 +1,7 @@
+-# .card
 - @pins.each do |pin|
-  = image_tag pin.image.url(:medium)
-  %h2= link_to pin.title, pin
+  .card
+    .card-img-top
+      = image_tag pin.image.url(:medium)
+    .card-block
+      %h2= link_to pin.title, pin

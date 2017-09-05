@@ -1,9 +1,20 @@
 
-= image_tag @pin.image.url(:medium)
-%h2= @pin.title
-%p= @pin.description
-%p Created by:
-%p= @pin.user.user_name
+-# = image_tag @pin.image.url(:medium)
+-# %h2= @pin.title
+-# %p= @pin.description
+-# %p Created by:
+-# %p= @pin.user.user_name
+
+/ HTML Code for Panel with Aqua Header
+.panel-aqua
+  .panel-heading
+    %h2.panel-title= @pin.title
+    %p= @pin.user.user_name
+  .panel-body
+    = image_tag @pin.image.url(:medium)
+  .panel-footer
+    %p= @pin.description
+/ End Aqua Panel
 
 = link_to 'BACK', root_path, class: 'btn btn-primary'
 = link_to 'EDIT', edit_pin_path, class: 'btn btn-outline-primary'
