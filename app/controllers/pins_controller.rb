@@ -3,6 +3,8 @@ class PinsController < ApplicationController
 
   before_action :find_pin, only: [:show ,:edit, :update, :destroy ]
 
+  before_action :owned_post, only: [:edit, :update, :destroy]
+
   def index
     @pins = Pin.all
   end
@@ -18,8 +20,10 @@ class PinsController < ApplicationController
     @pin = current_user.pins.build(pin_params)
 
     if @pin.save
-      redirect_to @pin, notice: "Success!!"
+      flash[:success] = "Pin Created"
+      redirect_to @pin
     else
+      flash[:alert] = "Your new post couldn't be created!  Please check the form."
       render 'new'
     end
   end
@@ -30,15 +34,17 @@ class PinsController < ApplicationController
 
   def update
     if @pin.update(pin_params)
-     redirect_to @pin, notice: "Magically Updated!!"
+      flash[:success] = "Magically Updated"
+      redirect_to @pin
     else
-     render 'edit'
+      render 'edit'
     end
   end
 
   def destroy
     @pin.destroy
-    redirect_to root_path, notice: "It's Gone NOW!!"
+    flash[:success] = "It's Gone NOW!"
+    redirect_to root_path
   end
 
   private
@@ -50,4 +56,12 @@ class PinsController < ApplicationController
   def find_pin
     @pin = Pin.find(params[:id])
   end
+
+  def owned_post
+    unless current_user == @pin.user
+      flash[:alert] = "That post doesn't belong to you!"
+      redirect_to root_path
+    end
+  end
+
 end

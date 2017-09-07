@@ -11,11 +11,23 @@
     %h2.panel-title= @pin.title
     %p= @pin.user.user_name
   .panel-body
-    = image_tag @pin.image.url(:medium)
+    = image_tag @pin.image.url(:instagram)
   .panel-footer
     %p= @pin.description
 / End Aqua Panel
 
-= link_to 'BACK', root_path, class: 'btn btn-primary'
-= link_to 'EDIT', edit_pin_path, class: 'btn btn-outline-primary'
-= link_to "DELETE", pin_path, method: :delete, data: { confirm: "Really?"}, class: 'btn btn-danger'
+- if @pin.user.id == current_user.id
+  .text-center.edit-links
+    = link_to "Cancel", pins_path, class: 'btn btn-outline-secondary'
+    |
+    = link_to "Edit Pin", edit_pin_path(@pin), class: 'btn btn-primary'
+    |
+    = link_to "Delete", pin_path, method: :delete, data: { confirm: "Really?" }, class: 'btn btn-danger'
+- else
+  .text-center.edit-links
+    = link_to "Back", pins_path
+
+
+-# = link_to 'BACK', root_path, class: 'btn btn-primary'
+-# = link_to 'EDIT', edit_pin_path, class: 'btn btn-outline-primary'
+-# = link_to "DELETE", pin_path, method: :delete, data: { confirm: "Really?"}, class: 'btn btn-danger'

@@ -1,7 +1,17 @@
 -# .card
+#pins.transitions-enabled
 - @pins.each do |pin|
-  .card
-    .card-img-top
-      = image_tag pin.image.url(:medium)
-    .card-block
-      %h2= link_to pin.title, pin
+  .box.panel.panel-default
+    = link_to (image_tag pin.image.url(:large)), pin
+    .panel-body
+      %h2= pin.title
+
+  -# .box
+  -#   .card
+  -#     .card-header
+  -#       %p Submitted by:
+  -#       = pin.user.user_name
+  -#     .card-img-top
+  -#       = image_tag pin.image.url(:medium)
+  -#     .card-block
+  -#       %h2= link_to pin.title, pin
